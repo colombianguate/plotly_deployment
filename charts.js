@@ -73,12 +73,16 @@ function buildCharts(sample) {
     // Hint: Get the the top 10 otu_ids and map them in descending
     //  so the otu_ids with the most bacteria are last. 
     // slice method to slice top 10, map fucntion to get the ids from the result and map it into an array with the ids.
+    // reverse so the ids with ost barter are last
     var yticks = otu_ids.slice(0,10).map(otuID => `OTU ${otuID}`).reverse();
 
     // 8. Create the trace for the bar chart. 
     var barData = [{
-      x : sample_values,
+      // reverse so graph shows most values at top
+      x : sample_values.slice(0,10).reverse(),
       y: yticks,
+      // hover text 
+      text: otu_labels.slice(0,10).reverse(),
       // type of chart
       type : "bar",
       // orienataion of chart
